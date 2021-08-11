@@ -1,0 +1,4 @@
+rost
+requests
+loguru
+cachecontrol[filecache]

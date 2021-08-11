@@ -1,0 +1,26 @@
+<div class="my-3 text-gray-50">
+  <div class="mt-1 flex flex-col md:flex-row rounded text-base text-green-500">
+    <div class="md:flex-1 md:mr-2 text-white">
+      <input id="search-input" type="text" placeholder="Find a project..." class="focus:ring-green-500 focus:border-green-500 flex-1 block w-full px-5 py-1 rounded shadow-sm bg-gray-600 border-gray-300">
+    </div>
+
+    <div class="flex mt-2 md:mt-0">
+      <a href="{{ './30-days.html' if (current_page != '30_days') else '#'}}" type="button" id="button-365" class="{{ 'active-button' if (current_page == '30_days') }} flex flex-1 md:flex-auto justify-center px-5 py-1 mr-2 border border-white rounded-md shadow-sm text-white hover:bg-white hover:text-gray-900">
+        {{ icons.calendar(class='mr-2 h-6 w-6 self-center') }}
+
+        30 Days
+      </a>
+
+      <a href="{{ './365-days.html' if (current_page != '365_days') else '#'}}" type="button" id="button-30" class="{{ 'active-button' if (current_page == '365_days') }} flex flex-1 md:flex-auto justify-center px-5 py-1 mr-2 border border-white rounded-md shadow-sm text-white hover:bg-white hover:text-gray-900">
+        {{ icons.calendar(class='mr-2 h-6 w-6 self-center') }}
+
+        365 Days
+      </a>
+
+      <button id="sort-button" type="button" class="flex justify-center px-5 py-1 border border-white rounded-md shadow-sm text-white hover:bg-white hover:text-gray-900">
+        {{ icons.sort_descending(class='h-6 w-6 self-center hidden', id='sort-descending') }}
+        {{ icons.sort_ascending(class='h-6 w-6 self-center', id='sort-ascending') }}
+      </button>
+    </div>
+  </div>
+</div>
