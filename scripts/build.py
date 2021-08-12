@@ -50,4 +50,4 @@ def build_project(develop=False):
 
 
 if __name__ == "__main__":
-    build_project(develop=True)
+    build_project(develop=False)
