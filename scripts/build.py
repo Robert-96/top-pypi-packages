@@ -1,5 +1,3 @@
-import sys
-
 from rost import Rost
 from loguru import logger
 
