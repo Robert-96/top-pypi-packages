@@ -1,4 +1,10 @@
 <div id="projects" class="flex flex-col">
+  <div id="searching" class="flex items-center hidden">
+    {{ icons.loader(class='animate-spin w-5 h-5 self-center text-white mr-1') }}
+
+    <p class="text-base">Searching</p>
+  </div>
+
   {% for project in projects %}
     <div id="{{ project.name }}" class="project my-1 py-5 flex-none border-b border-gray-800">
       <h3 class="mb-2 text-lg font-bold">
@@ -69,4 +75,8 @@
       </div>
     </div>
   {% endfor %}
+
+  <div id="no-results" class="hidden my-10 text-center text-lg">
+    <span>Did not found any projects that match.</span>
+  </div>
 </div>

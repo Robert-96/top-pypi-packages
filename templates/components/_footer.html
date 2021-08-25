@@ -1,8 +1,10 @@
 <footer class="mt-12 mb-5 py-5">
   <div class="flex items-center mb-1">
-    {{ icons.logo(class='w-4 h-4 self-center text-white') }}
+    {{ icons.logo(class='w-6 h-6 self-center text-white') }}
 
-    <h1 id="title" class="font-semibold text-base mx-3">Top PyPi Packages</h1>
+    <h1 id="title" class="font-semibold text-lg mx-3">Top PyPi Packages</h1>
+
+    <span class="justify-self-stretch text-sm text-gray-400">Version {{ version }}</span>
   </div>
 
   <span class="justify-self-stretch">{{ utils.link('Check out the source code on GitHub →', 'https://github.com/Robert-96/top-pypi-packages', class='hover:underline') }}</span>

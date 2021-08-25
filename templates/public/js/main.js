@@ -16,6 +16,10 @@ function sort(container, sortAscendingIcon, sortDescendingIcon) {
 
 function search(inputValue) {
   const filter = inputValue.trim().toLowerCase();
+  let found = false;
+
+  const searchingMessage = document.getElementById('searching')
+  searchingMessage.classList.remove('hidden');
 
   for (let i = 0; i < projects.length; i++) {
     let project = projects[i];
@@ -24,6 +28,7 @@ function search(inputValue) {
     let keywords = project.keywords || [];
 
     if (name.indexOf(filter) > -1 || summary.indexOf(filter) > -1 || keywords.indexOf(filter) > -1) {
+      found = true;
       let element = document.getElementById(project.name);
       element.classList.remove('hidden');
     } else {
@@ -31,6 +36,15 @@ function search(inputValue) {
       element.classList.add('hidden');
     }
   }
+
+  let noResultsMessage = document.getElementById('no-results');
+  if (found) {
+    noResultsMessage.classList.add('hidden');
+  } else {
+    noResultsMessage.classList.remove('hidden');
+  }
+
+  searchingMessage.classList.add('hidden');
 }
 
 window.addEventListener("load", function() {

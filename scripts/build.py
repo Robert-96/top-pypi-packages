@@ -1,7 +1,8 @@
 from rost import Rost
 from loguru import logger
 
-from .download import get_top_packages
+from .__version__ import VERSION
+from .download import get_top_30_days, get_top_365_days
 
 
 logger.level("INFO")
@@ -26,16 +27,17 @@ def format_download_count(number):
         return str(number)
 
 
-def get_context():
-    return get_top_packages()
-
-
 def build_project(develop=False):
     generator = Rost(
         searchpath='templates',
         staticpaths=['public'],
+        context={
+            'version': VERSION,
+            'timepstamp': "",
+        },
         contexts=[
-            ('.', get_context)
+            ('30-days.html', lambda: {'projects': get_top_30_days()}),
+            ('365-days.html', lambda: {'projects': get_top_365_days()})
         ],
         filters={
             'format_number': format_number,

@@ -1,4 +1,5 @@
 import json
+import functools
 import os.path
 
 import requests
@@ -17,32 +18,49 @@ PACKAGE_URL = 'https://pypi.org/project/{}'
 
 CACHE_FILE = 'cache/data.json'
 
-cache = FileCache('cache/.web', forever=True)
-session = CacheControl(requests.Session(), cache)
+file_cache = FileCache('cache/.web', forever=True)
+session = CacheControl(requests.Session(), file_cache)
 
 
-def get_top_packages():
+def cache(filename=None):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            if os.path.isfile(filename):
+                with open(filename) as fp:
+                    return json.load(fp)
+
+            value = func(*args, **kwargs)
+
+            if not os.path.exists(filename):
+                with open(filename, 'w') as fp:
+                    json.dump(value, fp, indent=2, sort_keys=True)
+
+            return value
+        return wrapper
+    return decorator
+
+
+def get_top_packages(file):
     """Download and return a list of most downloaded packages on PyPI."""
 
-    if os.path.isfile(CACHE_FILE):
-        with open(CACHE_FILE) as fp:
-            return json.load(fp)
-
-    top_packages = dict()
-
-    response = session.get(TOP_30_DAYS_URL)
+    response = session.get(file)
     data = response.json().get('rows')
-    top_packages['top_30_days'] = normalize_packages_data(data)
+    return normalize_packages_data(data)
 
-    response = session.get(TOP_365_DAYS_URL)
-    data = response.json().get('rows')
-    top_packages['top_365_days'] = normalize_packages_data(data)
 
-    if not os.path.exists(CACHE_FILE):
-        with open(CACHE_FILE, 'w') as fp:
-            json.dump(top_packages, fp, indent=2, sort_keys=True)
+@cache('cache/30-days.json')
+def get_top_30_days():
+    """Download and return a list of most downloaded packages on PyPI."""
 
-    return top_packages
+    return get_top_packages(TOP_30_DAYS_URL)
+
+
+@cache('cache/365-days.json')
+def get_top_365_days():
+    """Download and return a list of most downloaded packages on PyPI."""
+
+    return get_top_packages(TOP_365_DAYS_URL)
 
 
 def normalize_packages_data(packages):
@@ -122,10 +140,12 @@ def normalize_pypi_data(info):
 if __name__ == "__main__":
     import pprint
 
-    top_packages = get_top_packages()
+    top_30_days = get_top_30_days()
 
-    pprint.pprint("Length: {}".format(len(top_packages['top_30_days'])))
-    pprint.pprint(top_packages['top_30_days'][:16], indent=2)
+    print('Top 30 Days Length: {}'.format(len(top_30_days)))
+    pprint.pprint(top_30_days[:5], indent=2)
 
-    pprint.pprint("Length: {}".format(len(top_packages['top_365_days'])))
-    pprint.pprint(top_packages['top_365_days'][:16], indent=2)
+    top_365_days = get_top_365_days()
+
+    print('Top 365 Days Length: {}'.format(len(top_365_days)))
+    pprint.pprint(top_365_days[:5], indent=2)

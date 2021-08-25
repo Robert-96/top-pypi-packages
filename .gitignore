@@ -133,7 +133,7 @@ dmypy.json
 
 # Cache
 cache/.web
-cache/data.json
+cache/*.json
 
 # MacOS
 .DS_Store
