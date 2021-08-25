@@ -1,3 +1,5 @@
+import datetime
+
 from rost import Rost
 from loguru import logger
 
@@ -33,7 +35,7 @@ def build_project(develop=False):
         staticpaths=['public'],
         context={
             'version': VERSION,
-            'timepstamp': "",
+            'timestamp': str(datetime.datetime.now()),
         },
         contexts=[
             ('30-days.html', lambda: {'projects': get_top_30_days()}),
