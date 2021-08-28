@@ -12,7 +12,7 @@
 
         <a href="{{ project.project_url }}" class="mr-1 text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
 
-        <span class="font-normal text-sm text-gray-300">{{ project.download_count|format_download_count }}</span>
+        <span class="font-normal text-sm text-gray-400">{{ project.download_count|format_download_count }}</span>
       </h3>
 
       <div class="mb-5">
@@ -50,10 +50,10 @@
 
       {% endif %}
 
-      <div class="flex flex-wrap items-center">
+      <div class="flex flex-wrap items-center text-gray-400">
         {% if project.license %}
           <div class="flex items-center mr-3 md:mr-5">
-            {{ icons.scale(class='w-4 h-4 mr-1 self-center text-white') }}
+            {{ icons.scale(class='w-4 h-4 mr-1 self-center') }}
 
             <span>{{ project.license|truncate(64) }}</span>
           </div>
@@ -61,14 +61,14 @@
 
         {% if project.version %}
           <div class="flex items-center mr-3 md:mr-5">
-            {{ icons.tag(class='w-4 h-4 mr-1 self-center text-white') }}
+            {{ icons.tag(class='w-4 h-4 mr-1 self-center') }}
 
             <span>v{{ project.version }}</span>
           </div>
         {% endif %}
 
         <div class="flex items-center">
-          {{ icons.download(class='w-4 h-4 mr-1 self-center text-white') }}
+          {{ icons.download(class='w-4 h-4 mr-1 self-center') }}
 
           <span>{{ project.download_count|format_number }}</span>
         </div>
@@ -76,7 +76,7 @@
     </div>
   {% endfor %}
 
-  <div id="no-results" class="hidden my-10 text-center text-lg">
+  <div id="no-results" class="hidden py-10 text-center text-lg font-medium border-b border-gray-800">
     <span>Did not found any projects that match.</span>
   </div>
 </div>

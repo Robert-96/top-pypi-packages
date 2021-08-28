@@ -1,3 +1,5 @@
+/* Tooltip */
+
 .tooltip {
   position: relative;
   display: inline-block;
@@ -36,16 +38,21 @@
   visibility: visible;
 }
 
-.active-button {
-  background-color: #059669 !important;
-  border-color: #059669 !important;
+/* Navigation Buttons */
+
+.menu-button-active {
+  color: white;
+  font-weight: 500;
+
+  border-bottom-width: 4px;
+  border-color: #10B981;
 }
 
-.active-button:hover {
-  color: white !important;
+.menu-button {
+  color: #9CA3AF;
+}
 
-  background-color: #10B981 !important;
-  border-color: #10B981 !important;
-
-  cursor: not-allowed;
+.menu-button:hover {
+  border-bottom-width: 4px;
+  border-color: #4B5563;
 }
