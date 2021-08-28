@@ -38,8 +38,8 @@ def build_project(develop=False):
             'timestamp': str(datetime.datetime.now()),
         },
         contexts=[
-            ('30-days.html', lambda: {'projects': get_top_30_days()}),
-            ('365-days.html', lambda: {'projects': get_top_365_days()})
+            ('30-days.html', lambda: {'packages': get_top_30_days()}),
+            ('365-days.html', lambda: {'packages': get_top_365_days()})
         ],
         filters={
             'format_number': format_number,

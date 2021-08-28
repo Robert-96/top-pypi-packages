@@ -1,49 +1,49 @@
-<div id="projects" class="flex flex-col">
+<div id="packages" class="flex flex-col">
   <div id="searching" class="flex items-center hidden">
     {{ icons.loader(class='animate-spin w-5 h-5 self-center text-white mr-1') }}
 
     <p class="text-base">Searching</p>
   </div>
 
-  {% for project in projects %}
-    <div id="{{ project.name }}" class="project my-1 py-5 flex-none border-b border-gray-800">
+  {% for package in packages %}
+    <div id="{{ package.name }}" class="my-1 py-5 flex-none border-b border-gray-800">
       <h3 class="mb-2 text-lg font-bold">
-        <span>#{{ project.index }}</span>
+        <span>#{{ package.index }}</span>
 
-        <a href="{{ project.project_url }}" class="mr-1 text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">{{ project.name }}</a>
+        <a href="{{ package.url }}" class="mr-1 text-green-400 hover:underline" target="_blank" rel="noopener noreferrer">{{ package.name }}</a>
 
-        <span class="font-normal text-sm text-gray-400">{{ project.download_count|format_download_count }}</span>
+        <span class="font-normal text-sm text-gray-400">{{ package.download_count|format_download_count }}</span>
       </h3>
 
       <div class="mb-5">
-        <p>{{ project.summary }}</p>
+        <p>{{ package.summary }}</p>
       </div>
 
-      {% if project.keywords %}
+      {% if package.keywords %}
         <div class="flex flex-wrap mb-1 font-semibold text-sm lg:hidden">
-          {%- for keyword in project.keywords[:3] %}
+          {%- for keyword in package.keywords[:3] %}
             {{ utils.keyword(keyword) }}
           {% endfor %}
 
-          {% if project.keywords|length > 3 %}
+          {% if package.keywords|length > 3 %}
             <div class="tooltip cursor-pointer">
-              <span>+{{ project.keywords|length - 3 }} more</span>
+              <span>+{{ package.keywords|length - 3 }} more</span>
 
-              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ project.keywords[3:]|join(', ') }}</span>
+              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[3:]|join(', ') }}</span>
             </div>
           {% endif %}
         </div>
 
         <div class="flex-wrap mb-1 font-semibold text-sm hidden lg:flex">
-          {%- for keyword in project.keywords[:5] %}
+          {%- for keyword in package.keywords[:5] %}
             {{ utils.keyword(keyword) }}
           {% endfor %}
 
-          {% if project.keywords|length > 5 %}
+          {% if package.keywords|length > 5 %}
             <div class="tooltip cursor-pointer">
-              <span>+{{ project.keywords|length - 5 }} more</span>
+              <span>+{{ package.keywords|length - 5 }} more</span>
 
-              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ project.keywords[5:]|join(', ') }}</span>
+              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[5:]|join(', ') }}</span>
             </div>
           {% endif %}
         </div>
@@ -51,32 +51,32 @@
       {% endif %}
 
       <div class="flex flex-wrap items-center text-gray-400">
-        {% if project.license %}
+        {% if package.license %}
           <div class="flex items-center mr-3 md:mr-5">
             {{ icons.scale(class='w-4 h-4 mr-1 self-center') }}
 
-            <span>{{ project.license|truncate(64) }}</span>
+            <span>{{ package.license|truncate(64) }}</span>
           </div>
         {% endif %}
 
-        {% if project.version %}
+        {% if package.version %}
           <div class="flex items-center mr-3 md:mr-5">
             {{ icons.tag(class='w-4 h-4 mr-1 self-center') }}
 
-            <span>v{{ project.version }}</span>
+            <span>v{{ package.version }}</span>
           </div>
         {% endif %}
 
         <div class="flex items-center">
           {{ icons.download(class='w-4 h-4 mr-1 self-center') }}
 
-          <span>{{ project.download_count|format_number }}</span>
+          <span>{{ package.download_count|format_number }}</span>
         </div>
       </div>
     </div>
   {% endfor %}
 
   <div id="no-results" class="hidden py-10 text-center text-lg font-medium border-b border-gray-800">
-    <span>Did not found any projects that match.</span>
+    <span>Did not found any packages that match.</span>
   </div>
 </div>

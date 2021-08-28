@@ -21,18 +21,18 @@ function search(inputValue) {
   const searchingMessage = document.getElementById('searching')
   searchingMessage.classList.remove('hidden');
 
-  for (let i = 0; i < projects.length; i++) {
-    let project = projects[i];
-    let name = project.name.toLowerCase();
-    let summary = project.summary.toLowerCase();
-    let keywords = project.keywords || [];
+  for (let i = 0; i < packages.length; i++) {
+    let package = packages[i];
+    let name = package.name.toLowerCase();
+    let summary = package.summary.toLowerCase();
+    let keywords = package.keywords || [];
 
     if (name.indexOf(filter) > -1 || summary.indexOf(filter) > -1 || keywords.indexOf(filter) > -1) {
       found = true;
-      let element = document.getElementById(project.name);
+      let element = document.getElementById(package.name);
       element.classList.remove('hidden');
     } else {
-      let element = document.getElementById(project.name);
+      let element = document.getElementById(package.name);
       element.classList.add('hidden');
     }
   }
@@ -49,7 +49,7 @@ function search(inputValue) {
 
 window.addEventListener("load", function() {
   const searchInput = document.getElementById('search-input');
-  const projectsContainer = document.getElementById('projects');
+  const packagesContainer = document.getElementById('packages');
 
   const sortButton = document.getElementById('sort-button');
   const sortAscendingIcon = document.getElementById('sort-ascending');
@@ -62,6 +62,6 @@ window.addEventListener("load", function() {
   }, 100));
 
   sortButton.addEventListener('click', function() {
-    sort(projectsContainer, sortAscendingIcon, sortDescendingIcon);
+    sort(packagesContainer, sortAscendingIcon, sortDescendingIcon);
   });
 });

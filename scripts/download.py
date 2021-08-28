@@ -119,7 +119,7 @@ def normalize_pypi_data(info):
         'name': info.get('name'),
         'summary': info.get('summary', ''),
         'version': info.get('version'),
-        'project_url': info.get('project_url'),
+        'url': info.get('project_url'),
     }
 
     if not info.get('keywords'):

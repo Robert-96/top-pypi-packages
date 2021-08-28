@@ -22,13 +22,13 @@
 
     {% include 'components/_search.html' %}
 
-    {% include 'components/_projects.html' %}
+    {% include 'components/_packages.html' %}
 
     {% include 'components/_footer.html' %}
   </div>
 
 <script>
-  var projects = {{ projects|tojson }};
+  var packages = {{ packages|tojson }};
 </script>
 
 <script src="public/js/main.js"></script>
