@@ -27,7 +27,7 @@
 
           {% if package.keywords|length > 3 %}
             <div class="tooltip cursor-pointer">
-              <span>+{{ package.keywords|length - 3 }} more</span>
+              <span class="text-gray-400">+{{ package.keywords|length - 3 }} more</span>
 
               <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[3:]|join(', ') }}</span>
             </div>
@@ -41,7 +41,7 @@
 
           {% if package.keywords|length > 5 %}
             <div class="tooltip cursor-pointer">
-              <span>+{{ package.keywords|length - 5 }} more</span>
+              <span class="text-gray-400">+{{ package.keywords|length - 5 }} more</span>
 
               <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[5:]|join(', ') }}</span>
             </div>
