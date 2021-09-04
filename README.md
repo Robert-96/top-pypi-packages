@@ -2,6 +2,8 @@
 
 A web page with the most-downloaded packages from PyPI.
 
+https://robert-96.github.io/top-pypi-packages/30-days.html
+
 # Build
 
 ```
