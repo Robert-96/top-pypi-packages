@@ -134,10 +134,5 @@ if __name__ == "__main__":
 
     top_30_days = get_top_30_days()
 
-    print('Top 30 Days Length: {}'.format(len(top_30_days)))
+    print('Length: {}'.format(len(top_30_days)))
     pprint.pprint(top_30_days[:5], indent=2)
-
-    top_365_days = get_top_365_days()
-
-    print('Top 365 Days Length: {}'.format(len(top_365_days)))
-    pprint.pprint(top_365_days[:5], indent=2)
