@@ -4,15 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Top PyPi Packages | A web page with the most-downloaded packages from PyPI.</title>
+  <title>30 days | Top PyPi Packages | A web page with the most-downloaded packages from PyPI.</title>
+
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/style.css">
 
   {% include 'components/_meta.html' %}
 </head>
 <body class="bg-gray-900 text-gray-50 font-sans">
+  {% set current_page = '30_days' %}
+
+  {% import 'components/_utils.html' as utils %}
+  {% import 'components/_icons.html' as icons %}
+
+  <div class="m-5 p-3 md:mx-16 lg:mx-32 xl:mx-48 2xl:mx-60">
+    {% include 'components/_header.html' %}
+
+    {% include 'components/_search.html' %}
+
+    {% include 'components/_packages.html' %}
+
+    {% include 'components/_footer.html' %}
+  </div>
 
 <script>
-  window.location.replace("./30-days.html");
+  var packages = {{ packages|tojson }};
 </script>
 
+<script src="public/js/main.js"></script>
 </body>
 </html>

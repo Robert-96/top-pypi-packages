@@ -11,7 +11,6 @@ from cachecontrol.caches.file_cache import FileCache
 PACKAGE_COUNT = 1000
 
 TOP_30_DAYS_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json'
-TOP_365_DAYS_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-365-days.min.json'
 
 PYPI_PROJECT_URL = 'https://pypi.org/pypi/{}/json'
 PACKAGE_URL = 'https://pypi.org/project/{}'
@@ -54,13 +53,6 @@ def get_top_30_days():
     """Download and return a list of most downloaded packages on PyPI."""
 
     return get_top_packages(TOP_30_DAYS_URL)
-
-
-@cache('cache/365-days.json')
-def get_top_365_days():
-    """Download and return a list of most downloaded packages on PyPI."""
-
-    return get_top_packages(TOP_365_DAYS_URL)
 
 
 def normalize_packages_data(packages):

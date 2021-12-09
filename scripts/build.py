@@ -4,7 +4,7 @@ from rost import Rost
 from loguru import logger
 
 from .__version__ import VERSION
-from .download import get_top_30_days, get_top_365_days
+from .download import get_top_30_days
 
 
 logger.level("INFO")
@@ -38,8 +38,7 @@ def build_project(develop=False):
             'timestamp': str(datetime.datetime.now()),
         },
         contexts=[
-            ('30-days.html', lambda: {'packages': get_top_30_days()}),
-            ('365-days.html', lambda: {'packages': get_top_365_days()})
+            ('index.html', lambda: {'packages': get_top_30_days()}),
         ],
         filters={
             'format_number': format_number,
