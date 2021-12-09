@@ -7,9 +7,6 @@ from .__version__ import VERSION
 from .download import get_top_30_days
 
 
-logger.level("INFO")
-
-
 def format_number(number):
     return "{:,}".format(number)
 
@@ -53,4 +50,7 @@ def build_project(develop=False):
 
 
 if __name__ == "__main__":
+    logger.level("INFO")
+    logger.info("Build project...")
+
     build_project(develop=False)

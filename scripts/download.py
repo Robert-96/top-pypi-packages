@@ -9,7 +9,6 @@ from cachecontrol.caches.file_cache import FileCache
 
 
 PACKAGE_COUNT = 1000
-
 TOP_30_DAYS_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json'
 
 PYPI_PROJECT_URL = 'https://pypi.org/pypi/{}/json'
