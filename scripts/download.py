@@ -9,12 +9,10 @@ from cachecontrol.caches.file_cache import FileCache
 
 
 PACKAGE_COUNT = 1000
-TOP_30_DAYS_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json'
+TOP_PACKAGES_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json'
 
 PYPI_PROJECT_URL = 'https://pypi.org/pypi/{}/json'
 PACKAGE_URL = 'https://pypi.org/project/{}'
-
-CACHE_FILE = 'cache/data.json'
 
 file_cache = FileCache('cache/.web', forever=True)
 session = CacheControl(requests.Session(), file_cache)
@@ -39,19 +37,13 @@ def cache(filename=None):
     return decorator
 
 
-def get_top_packages(file):
+@cache('cache/data.json')
+def get_top_packages():
     """Download and return a list of most downloaded packages on PyPI."""
 
-    response = session.get(file)
+    response = session.get(TOP_PACKAGES_URL)
     data = response.json().get('rows')
     return normalize_packages_data(data)
-
-
-@cache('cache/30-days.json')
-def get_top_30_days():
-    """Download and return a list of most downloaded packages on PyPI."""
-
-    return get_top_packages(TOP_30_DAYS_URL)
 
 
 def normalize_packages_data(packages):
@@ -131,7 +123,8 @@ def normalize_pypi_data(info):
 if __name__ == "__main__":
     import pprint
 
-    top_30_days = get_top_30_days()
+    pprint('Download the list of the top packages from PyPi...')
+    top_packages = get_top_packages()
 
-    print('Length: {}'.format(len(top_30_days)))
-    pprint.pprint(top_30_days[:5], indent=2)
+    print('Length: {}'.format(len(top_packages)))
+    pprint.pprint(top_packages[:5], indent=2)
