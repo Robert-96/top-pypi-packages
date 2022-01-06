@@ -37,22 +37,3 @@
 .tooltip:hover .tooltip-text {
   visibility: visible;
 }
-
-/* Navigation Buttons */
-
-.menu-button-active {
-  color: white;
-  font-weight: 500;
-
-  border-bottom-width: 4px;
-  border-color: #10B981;
-}
-
-.menu-button {
-  color: #9CA3AF;
-}
-
-.menu-button:hover {
-  border-bottom-width: 4px;
-  border-color: #4B5563;
-}
