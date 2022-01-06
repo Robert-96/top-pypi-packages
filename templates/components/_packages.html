@@ -20,32 +20,10 @@
       </div>
 
       {% if package.keywords %}
-        <div class="space-x-3 mb-5 flex flex-wrap font-semibold text-sm lg:hidden">
-          {%- for keyword in package.keywords[:3] %}
-            {{ utils.keyword(keyword) }}
+        <div class="flex flex-wrap mb-3 font-semibold text-sm">
+          {%- for keyword in package.keywords %}
+            {{ utils.keyword(keyword, class="mr-3 mb-3") }}
           {% endfor %}
-
-          {% if package.keywords|length > 3 %}
-            <div class="tooltip cursor-pointer">
-              <span class="text-gray-400">+{{ package.keywords|length - 3 }} more</span>
-
-              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[3:]|join(', ') }}</span>
-            </div>
-          {% endif %}
-        </div>
-
-        <div class="space-x-3 mb-5 font-semibold text-sm hidden lg:flex">
-          {%- for keyword in package.keywords[:5] %}
-            {{ utils.keyword(keyword) }}
-          {% endfor %}
-
-          {% if package.keywords|length > 5 %}
-            <div class="tooltip cursor-pointer">
-              <span class="text-gray-400">+{{ package.keywords|length - 5 }} more</span>
-
-              <span class="tooltip-text p-2 bg-black text-gray-50 rounded-sm">{{ package.keywords[5:]|join(', ') }}</span>
-            </div>
-          {% endif %}
         </div>
       {% endif %}
 

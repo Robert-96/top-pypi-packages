@@ -2,8 +2,8 @@
   <a href="{{ location }}" id="{{ id }}" class="{{ class }}" target="_blank" rel="noopener noreferrer">{{ text }}</a>
 {%- endmacro %}
 
-{% macro keyword(text) -%}
-  <span class="px-3 text-green-500 bg-green-900 rounded-xl">
+{% macro keyword(text, class='') -%}
+  <span class="px-3 text-green-500 bg-green-900 rounded-xl {{ class }}">
     {{ text }}
   </span>
 {%- endmacro %}
