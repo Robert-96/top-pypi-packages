@@ -20,7 +20,7 @@
       </div>
 
       {% if package.keywords %}
-        <div class="flex flex-wrap mb-1 font-semibold text-sm lg:hidden">
+        <div class="space-x-3 mb-5 flex flex-wrap font-semibold text-sm lg:hidden">
           {%- for keyword in package.keywords[:3] %}
             {{ utils.keyword(keyword) }}
           {% endfor %}
@@ -34,7 +34,7 @@
           {% endif %}
         </div>
 
-        <div class="flex-wrap mb-1 font-semibold text-sm hidden lg:flex">
+        <div class="space-x-3 mb-5 font-semibold text-sm hidden lg:flex">
           {%- for keyword in package.keywords[:5] %}
             {{ utils.keyword(keyword) }}
           {% endfor %}
@@ -47,7 +47,6 @@
             </div>
           {% endif %}
         </div>
-
       {% endif %}
 
       <div class="flex flex-wrap items-center text-gray-400">
