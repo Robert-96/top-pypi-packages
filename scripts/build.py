@@ -1,3 +1,5 @@
+"""A simple script that build a webpage with the most downloaded packages from PyPi."""
+
 import datetime
 
 from rost import Rost

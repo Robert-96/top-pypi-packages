@@ -1,3 +1,5 @@
+"""A simple script that downloads a list for the most downloaded packages for PyPi."""
+
 import json
 import functools
 import os.path
@@ -19,6 +21,8 @@ session = CacheControl(requests.Session(), file_cache)
 
 
 def cache(filename=None):
+    """Cache function return value."""
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -111,6 +115,8 @@ def normalize_pypi_data(info):
         data['keywords'] = info.get('keywords', '').lower().split(',')
     else:
         data['keywords'] = info.get('keywords', '').lower().split()
+
+    data['keywords'] = list(set(keyword for keyword in data['keywords'] if keyword))
 
     if not info.get('license'):
         data['license'] = None
