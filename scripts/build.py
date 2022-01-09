@@ -10,7 +10,7 @@ from .download import get_top_packages
 
 
 def format_number(number):
-    return "{:,}".format(number)
+    return '{:,}'.format(number)
 
 
 def format_download_count(number):
@@ -19,16 +19,24 @@ def format_download_count(number):
     K = 1_000
 
     if number > B:
-        return "{:.2f}B".format(number / B)
+        return '{:.2f}B'.format(number / B)
     if number > M:
-        return "{:.2f}M".format(number / M)
+        return '{:.2f}M'.format(number / M)
     elif number > K:
-        return "{:.2f}K".format(number / K)
+        return '{:.2f}K'.format(number / K)
     else:
         return str(number)
 
 
 def build_project(develop=False):
+    """Build the project.
+
+    Args:
+        develop (:obj:`bool`): If set to ``True`` it will start a dev server.
+            Defaults to ``False``.
+
+    """
+
     generator = Rost(
         searchpath='templates',
         staticpaths=['public'],
@@ -46,13 +54,13 @@ def build_project(develop=False):
     )
 
     if develop:
+        logger.info('Start dev server on http://localhost:8080/')
         generator.watch(monitorpaths=['public'])
     else:
+        logger.info('Build project...')
         generator.build()
 
 
-if __name__ == "__main__":
-    logger.level("INFO")
-    logger.info("Build project...")
-
+if __name__ == '__main__':
+    logger.level('INFO')
     build_project(develop=False)

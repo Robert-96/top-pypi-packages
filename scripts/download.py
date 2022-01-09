@@ -51,6 +51,13 @@ def get_top_packages():
 
 
 def normalize_packages_data(packages):
+    """Given a list of packages download data form PyPi for each package.
+
+    Args:
+        package (:obj:`list`): A list of package names.
+
+    """
+
     normalized_rows = list()
 
     for index, package in enumerate(packages[:PACKAGE_COUNT], start=1):
