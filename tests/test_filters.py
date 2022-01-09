@@ -30,7 +30,7 @@ def test_format_number(number, expected):
         (6_000_000, "6M"),
         (7_654_321, "7.65M"),
         (8_000_000_000, "8B"),
-        (9_876_543_210, "9.88B")
+        (9_876_543_210, "9.87B")
     ]
 )
 def test_format_download_count(number, expected):

@@ -1,5 +1,8 @@
 """A collection of custom Jinja2 filters."""
 
+from decimal import Decimal, ROUND_DOWN
+from typing import get_args
+
 
 def format_number(number):
     """Format a number to more readable sting.
@@ -45,7 +48,7 @@ def format_download_count(number):
         '7.65M'
 
         >>> format_download_count(9_876_543_210)
-        '9.88B'
+        '9.87B'
 
     """
 
@@ -59,10 +62,7 @@ def format_download_count(number):
         if number < value:
             continue
 
-        if number % value == 0:
-            return '{}{}'.format(number // value, letter)
-
-        return '{:.2f}{}'.format(number / value, letter)
+        return '{}{}'.format(Decimal(number / value).quantize(Decimal('.01'), rounding=ROUND_DOWN).normalize(), letter)
 
     return str(number)
 
