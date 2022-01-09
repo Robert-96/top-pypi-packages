@@ -1,7 +1,6 @@
 """A collection of custom Jinja2 filters."""
 
 from decimal import Decimal, ROUND_DOWN
-from typing import get_args
 
 
 def format_number(number):
