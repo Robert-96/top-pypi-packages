@@ -7,25 +7,7 @@ from loguru import logger
 
 from .__version__ import VERSION
 from .download import get_top_packages
-
-
-def format_number(number):
-    return '{:,}'.format(number)
-
-
-def format_download_count(number):
-    B = 1_000_000_000
-    M = 1_000_000
-    K = 1_000
-
-    if number > B:
-        return '{:.2f}B'.format(number / B)
-    if number > M:
-        return '{:.2f}M'.format(number / M)
-    elif number > K:
-        return '{:.2f}K'.format(number / K)
-    else:
-        return str(number)
+from .filters import format_number, format_download_count
 
 
 def build_project(develop=False):

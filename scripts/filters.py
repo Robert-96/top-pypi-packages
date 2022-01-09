@@ -1,0 +1,72 @@
+"""A collection of custom Jinja2 filters."""
+
+
+def format_number(number):
+    """Format a number to more readable sting.
+
+    Args:
+        str: A string containing the formated number.
+
+    Example:
+        >>> format_number(321)
+        '321'
+
+        >>> format_number(5_432)
+        '5,432'
+
+        >>> format_number(7_654_321)
+        '7,654,321'
+
+        >>> format_number(9_876_543_210)
+        '9,876,543,210'
+
+    """
+
+    return '{:,}'.format(number)
+
+
+def format_download_count(number):
+    """Format a number to more readable download count.
+
+    Returns:
+        str: A string containing the formated number.
+
+    Examples:
+        >>> format_download_count(321)
+        '321'
+
+        >>> format_download_count(5_000)
+        '5K'
+
+        >>> format_download_count(5_432)
+        '5.43K'
+
+        >>> format_download_count(7_654_321)
+        '7.65M'
+
+        >>> format_download_count(9_876_543_210)
+        '9.88B'
+
+    """
+
+    number_map = [
+        (1_000_000_000, 'B'),
+        (1_000_000, 'M'),
+        (1_000, 'K'),
+    ]
+
+    for value, letter in number_map:
+        if number < value:
+            continue
+
+        if number % value == 0:
+            return '{}{}'.format(number // value, letter)
+
+        return '{:.2f}{}'.format(number / value, letter)
+
+    return str(number)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
