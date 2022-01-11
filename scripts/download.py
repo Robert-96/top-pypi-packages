@@ -111,10 +111,14 @@ def normalize_pypi_data(info):
 
     data = {
         'name': info.get('name'),
-        'summary': info.get('summary', ''),
         'version': info.get('version'),
         'url': info.get('project_url'),
     }
+
+    if info.get('summary'):
+        data['summary'] = info.get('summary')
+    else:
+        data['summary'] = ''
 
     if not info.get('keywords'):
         data['keywords'] = []
