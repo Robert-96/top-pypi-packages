@@ -1,8 +1,8 @@
 """A simple script that downloads a list for the most downloaded packages for PyPi."""
 
+import os
 import json
 import functools
-import os.path
 
 import requests
 from loguru import logger
@@ -10,7 +10,7 @@ from cachecontrol import CacheControl
 from cachecontrol.caches.file_cache import FileCache
 
 
-PACKAGE_COUNT = 1000
+PACKAGE_COUNT = 5000
 TOP_PACKAGES_URL = 'https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json'
 
 PYPI_PROJECT_URL = 'https://pypi.org/pypi/{}/json'
@@ -113,12 +113,8 @@ def normalize_pypi_data(info):
         'name': info.get('name'),
         'version': info.get('version'),
         'url': info.get('project_url'),
+        'summary': info.get('summary') or '',
     }
-
-    if info.get('summary'):
-        data['summary'] = info.get('summary')
-    else:
-        data['summary'] = ''
 
     if not info.get('keywords'):
         data['keywords'] = []

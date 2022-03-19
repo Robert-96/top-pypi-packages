@@ -1,11 +1,38 @@
-<header class="mb-6 flex justify-between items-center">
-  <div class="flex items-center">
-    {{ icons.logo(class='w-8 h-8 self-center text-white') }}
+<header>
+  <div class="mb-6 flex justify-between items-end">
+    <div class="flex items-center">
+      {{ icons.logo(class='w-8 h-8 self-center text-white') }}
 
-    <h1 id="title" class="font-semibold text-xl mx-3">Top PyPi Packages</h1>
+      <h1 id="title" class="font-semibold text-xl mx-3">Top PyPi Packages</h1>
+    </div>
+
+    <span class="hidden sm:block text-gray-400">
+      {{ utils.link('Check out the source code on GitHub →', 'https://github.com/Robert-96/top-pypi-packages', class='hover:underline') }}
+    </span>
   </div>
 
-  <span class="justify-self-stretch hidden sm:block">
-    {{ utils.link('Check out the source code on GitHub →', 'https://github.com/Robert-96/top-pypi-packages', class='hover:underline') }}
-  </span>
+  <div class="py-3 mb-3 border-b border-t border-gray-800">
+    <div class="flex justify-between flex-col xl:flex-row space-y-3 xl:space-y-0 xl:space-x-3 my-1 text-base">
+      <div class="py-1 xl:w-1/2">
+        A web page with the most-downloaded {{ packages|length }} packages from PyPI.
+      </div>
+
+      <div class="flex flex-col xl:items-center md:flex-row space-y-3 md:space-y-0 md:space-x-3">
+        <a href="/json/packages.json" download class="flex justify-center space-x-2 px-5 py-1 border border-gray-800 rounded-md text-gray-400 hover:bg-green-500 hover:text-white">
+          {{ icons.download(class='h-4 w-4 self-center') }}
+
+          <span>Download JSON</span>
+        </a>
+
+        <button id="sort-button" type="button" class="flex justify-center space-x-2 px-5 py-1 border border-gray-800 rounded-md text-gray-400 hover:bg-green-500 hover:text-white">
+          <div>
+            {{ icons.sort_descending(class='h-6 w-6 self-center', id='sort-descending') }}
+            {{ icons.sort_ascending(class='h-6 w-6 self-center hidden', id='sort-ascending') }}
+          </div>
+
+          <span id="sort-label">Sort Descending</span>
+        </button>
+      </div>
+    </div>
+  </div>
 </header>

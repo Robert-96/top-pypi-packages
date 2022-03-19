@@ -17,16 +17,10 @@
   <div class="m-5 p-3 md:mx-16 lg:mx-32 xl:mx-48 2xl:mx-60">
     {% include 'components/_header.html' %}
 
-    {% include 'components/_search.html' %}
-
     {% include 'components/_packages.html' %}
 
     {% include 'components/_footer.html' %}
   </div>
-
-<script>
-  var packages = {{ packages|tojson }};
-</script>
 
 <script src="public/js/main.js"></script>
 </body>

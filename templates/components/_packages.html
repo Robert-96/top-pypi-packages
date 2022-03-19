@@ -1,12 +1,6 @@
 <div id="packages" class="flex flex-col flex-shrink-0">
-  <div id="searching" class="flex items-center hidden">
-    {{ icons.loader(class='animate-spin w-5 h-5 self-center text-white mr-1') }}
-
-    <p class="text-base">Searching</p>
-  </div>
-
   {% for package in packages %}
-    <div id="{{ package.name }}" class="my-1 py-5 flex-none border-b border-gray-800">
+    <div id="{{ package.name|lower }}" class="my-1 py-5 flex-none border-b border-gray-800">
       <h3 class="mb-2 text-lg font-bold">
         <span>#{{ package.index }}</span>
 
