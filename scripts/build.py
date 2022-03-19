@@ -43,7 +43,7 @@ def build_project(develop=False):
             'timestamp': TIMESTAMP,
         },
         contexts=[
-            ('index.html', lambda: { 'packages': PACKAGES }),
+            ('index.html', lambda: {'packages': PACKAGES}),
         ],
         filters={
             'format_number': format_number,
