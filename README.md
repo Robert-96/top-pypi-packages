@@ -1,18 +1,24 @@
 # top-pypi-packages
 
-A web page with the most-downloaded packages from PyPI.
+A web page with the most-downloaded packages from PyPI:
 
-https://robert-96.github.io/top-pypi-packages/
+* https://robert-96.github.io/top-pypi-packages/
+
+You can also download a dump of the 5,000 most-downloaded packages from PyPI (including summary, keywords, version and license):
+
+* https://robert-96.github.io/top-pypi-packages/json/packages.json
 
 ![Screenshot](/screenshots/screenshot.png)
 
-## Setup
+## Development
+
+### Setup
 
 ```
 $ pip install -r requirements.txt
 ```
 
-## Serve
+### Serve
 
 ```
 $ python -m scripts
@@ -20,13 +26,13 @@ $ python -m scripts
 
 Will start a dev server on http://localhost:8080/
 
-## Build
+### Build
 
 ```
 $ python -m scripts.build
 ```
 
-## Test
+### Test
 
 ```
 $ pip install -r requirements-dev.txt
