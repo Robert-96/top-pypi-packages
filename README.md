@@ -10,6 +10,9 @@ You can also download a dump of the 5,000 most-downloaded packages from PyPI (in
 
 ![Screenshot](/screenshots/screenshot.png)
 
+> **Note**: This package expends the list from https://github.com/hugovk/top-pypi-packages with the package info from the PyPI API.
+
+
 ## Development
 
 ### Setup
@@ -24,7 +27,7 @@ $ pip install -r requirements.txt
 $ python -m scripts
 ```
 
-Will start a dev server on http://localhost:8080/
+Will start a dev server on http://localhost:8080/.
 
 ### Build
 
@@ -38,6 +41,7 @@ $ python -m scripts.build
 $ pip install -r requirements-dev.txt
 $ pytest tests
 ```
+
 
 ## License
 
