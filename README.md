@@ -17,6 +17,8 @@ A dump of the 5,000 most-downloaded packages from PyPI (including summary, keywo
 
 ### Setup
 
+Use the following command to install all dependencies:
+
 ```
 $ pip install -r requirements.txt
 ```
@@ -31,17 +33,27 @@ Will start a dev server on http://localhost:8080/.
 
 ### Build
 
+Run the following command to build the project:
+
 ```
 $ python -m scripts.build
 ```
 
+You can find the build inside the `dist/` directory.
+
 ### Test
+
+You can run install the dev dependencies using the following command:
 
 ```
 $ pip install -r requirements-dev.txt
-$ pytest tests
 ```
 
+You can run the tests using the following command:
+
+```
+$ pytest tests
+```
 
 ## License
 
