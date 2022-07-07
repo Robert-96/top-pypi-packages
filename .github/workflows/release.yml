@@ -51,5 +51,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "d${{ env.date }}"
           title: "Release ${{ env.date }}"
+          prerelease: false
           files: |
             dist/json/*.json
