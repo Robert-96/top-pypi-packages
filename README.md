@@ -7,6 +7,7 @@ A web page with the most-downloaded packages from PyPI:
 A dump of the 5,000 most-downloaded packages from PyPI (including summary, keywords, version and license):
 
 * https://robert-96.github.io/top-pypi-packages/json/packages.json
+* https://robert-96.github.io/top-pypi-packages/json/packages.min.json *(Minified)*
 
 ![Screenshot](/screenshots/screenshot.png)
 

@@ -13,13 +13,17 @@ from .download import get_top_packages
 from .filters import format_number, format_download_count
 
 
-def create_json_file(searchpath, outputpath, packages=None):
+def create_json_files(searchpath, outputpath, packages=None):
     json_directory = os.path.join(outputpath, 'json')
     json_file = os.path.join(json_directory, 'packages.json')
+    json_file_minify = os.path.join(json_directory, 'packages.min.json')
 
     os.mkdir(json_directory)
 
     with open(json_file, 'w') as fp:
+        json.dump(packages, fp, indent=4)
+
+    with open(json_file_minify, 'w') as fp:
         json.dump(packages, fp)
 
 
@@ -49,7 +53,7 @@ def build_project(develop=False):
             'format_number': format_number,
             'format_download_count': format_download_count
         },
-        before_callback=functools.partial(create_json_file, packages=PACKAGES)
+        before_callback=functools.partial(create_json_files, packages=PACKAGES)
     )
 
     if develop:
