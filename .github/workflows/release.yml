@@ -38,7 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get current date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - uses: rickstaa/action-create-tag@v1
