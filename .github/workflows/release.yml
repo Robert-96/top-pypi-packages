@@ -1,12 +1,12 @@
 name: Deploy
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   schedule:
+#     - cron: '0 12 2 * *'
 
 jobs:
-  deploy:
+  release:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -18,17 +18,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements-dev.txt
+          python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r requirements.txt
-
-      - name: Lint with flake8
-        run: |
-          flake8 .
-
-      - name: Test with pytest
-        run: |
-          pytest tests
 
       - name: Build
         run: |
@@ -42,3 +33,15 @@ jobs:
           build_dir: dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get current date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: Crate new release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "${{ steps.date.outputs.date }}"
+          title: "Release ${{ steps.date.outputs.date }}"
+          files: |
+            dist/json/*.json
