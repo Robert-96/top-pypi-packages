@@ -1,4 +1,4 @@
-name: Deploy
+name: Release
 
 on:
   push:
@@ -40,11 +40,16 @@ jobs:
       - name: Get current date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "d${{ steps.date.outputs.date }}"
+          message: "Release ${{ steps.date.outputs.date }}"
+
       - name: Crate new release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "${{ steps.date.outputs.date }}"
+          automatic_release_tag: "d${{ steps.date.outputs.date }}"
           title: "Release ${{ steps.date.outputs.date }}"
           files: |
             dist/json/*.json
