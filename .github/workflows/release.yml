@@ -1,8 +1,11 @@
 name: Deploy
 
-# on:
-#   schedule:
-#     - cron: '0 12 2 * *'
+on:
+  push:
+    branches:
+      - main
+# schedule:
+#   - cron: '0 12 2 * *'
 
 jobs:
   release:
