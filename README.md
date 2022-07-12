@@ -24,7 +24,7 @@ Use the following command to install all dependencies:
 $ pip install -r requirements.txt
 ```
 
-### Serve
+### Server
 
 ```
 $ python -m scripts
@@ -55,6 +55,7 @@ You can run the tests using the following command:
 ```
 $ pytest tests
 ```
+
 
 ## License
 
