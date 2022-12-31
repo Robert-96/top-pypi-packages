@@ -1,8 +1,6 @@
-name: Release
+name: Test and Deploy
 
-on:
-  schedule:
-    - cron: '0 12 2 * *'
+on: [push]
 
 jobs:
   tests:
@@ -50,6 +48,7 @@ jobs:
           python -m scripts.build
 
       - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v1
         with:
           path: "dist/"
@@ -57,6 +56,8 @@ jobs:
   deploy:
     needs: build
     runs-on: macos-latest
+
+    if: github.ref == 'refs/heads/main'
 
     permissions:
       pages: write
@@ -70,28 +71,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-  release:
-    needs: deploy
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Get current date
-        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          tag: "d${{ env.date }}"
-          message: "Release ${{ steps.date.outputs.date }}"
-
-      - name: Crate new release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "d${{ env.date }}"
-          title: "Release ${{ env.date }}"
-          prerelease: false
-          files: |
-            dist/json/*.json
