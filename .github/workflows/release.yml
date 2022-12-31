@@ -5,14 +5,38 @@ on:
     - cron: '0 12 2 * *'
 
 jobs:
-  release:
-
+  tests:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -r requirements.txt
+
+      - name: Lint with flake8
+        run: |
+          flake8 .
+
+      - name: Test with pytest
+        run: |
+          pytest tests
+
+  build:
+    needs: tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
@@ -25,14 +49,34 @@ jobs:
         run: |
           python -m scripts.build
 
-      - name: Deploy GitHub page
-        uses: crazy-max/ghaction-github-pages@v2
-        if: ${{ success() }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          target_branch: gh-pages
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: "dist/"
+
+  deploy:
+    needs: build
+    runs-on: macos-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+  release:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
 
       - name: Get current date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
