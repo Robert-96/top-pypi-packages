@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,15 +30,44 @@ jobs:
         run: |
           pytest tests
 
+  build:
+    needs: tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
       - name: Build
         run: |
           python -m scripts.build
 
-      - name: Deploy GitHub page
-        uses: crazy-max/ghaction-github-pages@v2
-        if: ${{ success() }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          target_branch: gh-pages
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: "dist/"
+
+  deploy:
+    needs: build
+    runs-on: macos-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
