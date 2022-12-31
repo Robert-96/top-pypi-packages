@@ -1,9 +1,6 @@
-name: Deploy
+name: Test and Deploy
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   tests:
@@ -51,6 +48,7 @@ jobs:
           python -m scripts.build
 
       - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v1
         with:
           path: "dist/"
@@ -58,6 +56,8 @@ jobs:
   deploy:
     needs: build
     runs-on: macos-latest
+
+    if: github.ref == 'refs/heads/main'
 
     permissions:
       pages: write
