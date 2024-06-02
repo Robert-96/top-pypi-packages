@@ -1,4 +1,4 @@
-"""A simple script that build a webpage with the most downloaded packages from PyPi."""
+"""A simple script that build a webpage with the most downloaded packages from PyPI."""
 
 import os
 import json
