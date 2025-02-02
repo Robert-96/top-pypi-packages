@@ -4,10 +4,10 @@ from decimal import Decimal, ROUND_DOWN
 
 
 def format_number(number):
-    """Format a number to more readable sting.
+    """Format a number to more readable string.
 
     Args:
-        str: A string containing the formated number.
+        str: A string containing the formatted number.
 
     Example:
         >>> format_number(321)
@@ -31,7 +31,7 @@ def format_download_count(number):
     """Format a number to more readable download count.
 
     Returns:
-        str: A string containing the formated number.
+        str: A string containing the formatted number.
 
     Examples:
         >>> format_download_count(321)

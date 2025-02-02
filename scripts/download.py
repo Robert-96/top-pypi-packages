@@ -1,4 +1,4 @@
-"""A simple script that downloads a list for the most downloaded packages for PyPi."""
+"""A simple script that downloads a list for the most downloaded packages for PyPI."""
 
 import os
 import json
@@ -51,7 +51,7 @@ def get_top_packages():
 
 
 def normalize_packages_data(packages):
-    """Given a list of packages download data form PyPi for each package.
+    """Given a list of packages download data form PyPI for each package.
 
     Args:
         package (:obj:`list`): A list of package names.
@@ -75,7 +75,7 @@ def normalize_packages_data(packages):
 
 
 def get_pypi_data(package):
-    """Download PyPi info for the given package.
+    """Download PyPI info for the given package.
 
     Args:
         package (:obj:`str`): The name of the package.
@@ -102,10 +102,10 @@ def get_pypi_data(package):
 
 
 def normalize_pypi_data(info):
-    """Normalize PyPi data from a package.
+    """Normalize PyPI data from a package.
 
     Args:
-        info (:obj:`dict`): A dict containing the data downloaded from PyPi.
+        info (:obj:`dict`): A dict containing the data downloaded from PyPI.
 
     """
 
@@ -136,7 +136,7 @@ def normalize_pypi_data(info):
 if __name__ == "__main__":
     import pprint
 
-    pprint('Download the list of the top packages from PyPi...')
+    pprint('Download the list of the top packages from PyPI...')
     top_packages = get_top_packages()
 
     print('Length: {}'.format(len(top_packages)))

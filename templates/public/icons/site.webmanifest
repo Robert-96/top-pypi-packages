@@ -1,6 +1,6 @@
 {
-    "name": "Top PyPi Packages | A web page with the most-downloaded packages from PyPI",
-    "short_name": "Top PyPi Packages",
+    "name": "Top PyPI Packages | A web page with the most-downloaded packages from PyPI",
+    "short_name": "Top PyPI Packages",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
